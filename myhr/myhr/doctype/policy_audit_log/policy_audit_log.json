@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:PAL-{####}",
+ "creation": "2026-04-26 18:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "policy_acknowledgement",
+  "employee",
+  "hr_policy",
+  "policy_version",
+  "column_break_1",
+  "from_status",
+  "to_status",
+  "via",
+  "section_break_who",
+  "actor",
+  "actor_ip",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "policy_acknowledgement",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Policy Acknowledgement",
+   "options": "Policy Acknowledgement",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hr_policy",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "HR Policy",
+   "options": "HR Policy",
+   "read_only": 1
+  },
+  {
+   "fieldname": "policy_version",
+   "fieldtype": "Int",
+   "label": "Policy Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_status",
+   "fieldtype": "Data",
+   "label": "From Status",
+   "read_only": 1,
+   "description": "Empty when this row records the initial insert."
+  },
+  {
+   "fieldname": "to_status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "To Status",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "via",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Via",
+   "options": "ORM\nAPI\nSQL\nMigration\nReconcile\nBulkAck\nDeactivate\nVersionBump",
+   "read_only": 1,
+   "reqd": 1,
+   "description": "How the transition happened. SQL = direct UPDATE bypassing the ORM (e.g., supersede SQL)."
+  },
+  {
+   "fieldname": "section_break_who",
+   "fieldtype": "Section Break",
+   "label": "Actor"
+  },
+  {
+   "fieldname": "actor",
+   "fieldtype": "Link",
+   "label": "Actor",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "actor_ip",
+   "fieldtype": "Data",
+   "label": "Actor IP",
+   "read_only": 1
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-26 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Policy Audit Log",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 0,
+   "write": 0
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

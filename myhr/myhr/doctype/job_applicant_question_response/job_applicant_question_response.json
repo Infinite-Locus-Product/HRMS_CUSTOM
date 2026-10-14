@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-09-10 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "question",
+  "answer",
+  "is_mandatory",
+  "source_question"
+ ],
+ "fields": [
+  {
+   "columns": 5,
+   "fieldname": "question",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Question",
+   "read_only": 1
+  },
+  {
+   "columns": 5,
+   "fieldname": "answer",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Answer"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_mandatory",
+   "fieldtype": "Check",
+   "label": "Mandatory",
+   "read_only": 1
+  },
+  {
+   "description": "Row name of the Job Opening Question this answer belongs to.",
+   "fieldname": "source_question",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Source Question Row",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 20,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Job Applicant Question Response",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

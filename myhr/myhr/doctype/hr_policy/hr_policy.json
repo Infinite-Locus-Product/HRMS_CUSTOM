@@ -1,0 +1,190 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:POL-{####}",
+ "creation": "2026-04-04 16:38:41.362436",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "track_changes": 1,
+ "field_order": [
+  "policy_name",
+  "category",
+  "is_active",
+  "version",
+  "column_break_meta",
+  "mandatory_check_in_block",
+  "section_break_file",
+  "file",
+  "description",
+  "section_break_scope",
+  "applies_to_all_employees",
+  "applicability_logic",
+  "applicable_departments",
+  "applicable_designations",
+  "applicable_branches",
+  "applicable_employment_types",
+  "applicable_employees"
+ ],
+ "fields": [
+  {
+   "fieldname": "policy_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Policy Name",
+   "reqd": 1
+  },
+  {
+   "default": "General",
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Leave\nPOSH\nGratuity\nGeneral"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Active",
+   "description": "Inactive policies are not assigned to new employees and are skipped by the check-in gate. Existing acknowledgements are preserved."
+  },
+  {
+   "default": "1",
+   "fieldname": "version",
+   "fieldtype": "Int",
+   "label": "Version",
+   "read_only": 1,
+   "description": "Auto-incremented when the Policy File changes. Existing acknowledgements get marked Superseded; new ones are created at the new version."
+  },
+  {
+   "fieldname": "column_break_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "mandatory_check_in_block",
+   "fieldtype": "Check",
+   "label": "Mandatory Check-in Block",
+   "description": "If checked, employees in scope cannot Employee Check-in <b>or submit Attendance Requests</b> until they acknowledge this policy. The auto-present cron path is always exempt."
+  },
+  {
+   "fieldname": "section_break_file",
+   "fieldtype": "Section Break",
+   "label": "Policy Document"
+  },
+  {
+   "fieldname": "file",
+   "fieldtype": "Attach",
+   "label": "Policy File",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_break_scope",
+   "fieldtype": "Section Break",
+   "label": "Applicability"
+  },
+  {
+   "default": "1",
+   "fieldname": "applies_to_all_employees",
+   "fieldtype": "Check",
+   "label": "Applies to All Employees",
+   "description": "Uncheck to scope this policy by department / designation / branch / employment type / specific employees."
+  },
+  {
+   "default": "OR",
+   "fieldname": "applicability_logic",
+   "fieldtype": "Select",
+   "label": "Applicability Logic",
+   "options": "OR\nAND",
+   "depends_on": "eval:!doc.applies_to_all_employees",
+   "description": "OR: employee matches if they fit any one filter. AND: must fit every filter that has rows."
+  },
+  {
+   "fieldname": "applicable_departments",
+   "fieldtype": "Table",
+   "label": "Applicable Departments",
+   "options": "Policy Filter Department",
+   "depends_on": "eval:!doc.applies_to_all_employees"
+  },
+  {
+   "fieldname": "applicable_designations",
+   "fieldtype": "Table",
+   "label": "Applicable Designations",
+   "options": "Policy Filter Designation",
+   "depends_on": "eval:!doc.applies_to_all_employees"
+  },
+  {
+   "fieldname": "applicable_branches",
+   "fieldtype": "Table",
+   "label": "Applicable Branches",
+   "options": "Policy Filter Branch",
+   "depends_on": "eval:!doc.applies_to_all_employees"
+  },
+  {
+   "fieldname": "applicable_employment_types",
+   "fieldtype": "Table",
+   "label": "Applicable Employment Types",
+   "options": "Policy Filter Employment Type",
+   "depends_on": "eval:!doc.applies_to_all_employees"
+  },
+  {
+   "fieldname": "applicable_employees",
+   "fieldtype": "Table",
+   "label": "Manual Employee Override",
+   "options": "Policy Filter Employee",
+   "depends_on": "eval:!doc.applies_to_all_employees",
+   "description": "Specific employees who should always receive this policy regardless of the filters above."
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-25 21:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "HR Policy",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employee"
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

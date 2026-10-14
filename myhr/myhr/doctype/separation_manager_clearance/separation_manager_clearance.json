@@ -1,0 +1,268 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:SMC-{employee}-{#####}",
+ "creation": "2026-09-25 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_separation",
+  "employee",
+  "employee_name",
+  "column_break_context",
+  "department",
+  "reporting_manager",
+  "separation_status",
+  "handover_section",
+  "handover_documents",
+  "primary_successor",
+  "project_client_status_summary",
+  "column_break_employee",
+  "downloaded_payslips",
+  "downloaded_tax_slips",
+  "cleared_personal_files",
+  "manager_section",
+  "kt_handover_received",
+  "client_handoff_complete",
+  "code_repository_transferred",
+  "column_break_manager",
+  "access_revocation_requested",
+  "access_revocation_not_applicable",
+  "manager_remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "description": "One clearance per separation, enforced by the unique index.",
+   "fieldname": "employee_separation",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee Separation",
+   "options": "Employee Separation",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "employee_separation.employee",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_separation.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_context",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee_separation.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "description": "Whoever is named here is the only person who can complete this clearance.",
+   "fetch_from": "employee_separation.custom_reporting_manager",
+   "fieldname": "reporting_manager",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Reporting Manager",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "description": "The linked resignation's state. This clearance cannot be completed until it is Approved.",
+   "fetch_from": "employee_separation.workflow_state",
+   "fieldname": "separation_status",
+   "fieldtype": "Data",
+   "label": "Separation Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "handover_section",
+   "fieldtype": "Section Break",
+   "label": "Handover (Employee)"
+  },
+  {
+   "description": "KT docs, project links or handover notes. At least one row is required to submit.",
+   "fieldname": "handover_documents",
+   "fieldtype": "Table",
+   "label": "Handover Documents",
+   "options": "Separation Handover Document"
+  },
+  {
+   "description": "The colleague receiving the handover.",
+   "fieldname": "primary_successor",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Primary Successor",
+   "options": "Employee"
+  },
+  {
+   "description": "Key pending items and the status of anything still active.",
+   "fieldname": "project_client_status_summary",
+   "fieldtype": "Small Text",
+   "label": "Project / Client Status Summary"
+  },
+  {
+   "fieldname": "column_break_employee",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Past salary slips retrieved. Required before submitting.",
+   "fieldname": "downloaded_payslips",
+   "fieldtype": "Check",
+   "label": "Downloaded Payslips?"
+  },
+  {
+   "description": "Form 16 and tax documents retrieved. Required before submitting.",
+   "fieldname": "downloaded_tax_slips",
+   "fieldtype": "Check",
+   "label": "Downloaded Tax Slips / Form 16?"
+  },
+  {
+   "description": "Personal items removed from the work device. Required before submitting.",
+   "fieldname": "cleared_personal_files",
+   "fieldtype": "Check",
+   "label": "Cleared Personal Files from Drive?"
+  },
+  {
+   "depends_on": "eval:doc.workflow_state != 'Draft'",
+   "fieldname": "manager_section",
+   "fieldtype": "Section Break",
+   "label": "Verification (Reporting Manager)"
+  },
+  {
+   "description": "Cannot be set to Yes until a handover document and a primary successor exist.",
+   "fieldname": "kt_handover_received",
+   "fieldtype": "Select",
+   "label": "KT / Handover Received?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "description": "Client communication or re-assignment confirmed.",
+   "fieldname": "client_handoff_complete",
+   "fieldtype": "Select",
+   "label": "Client / External Handoff Complete?",
+   "options": "\nYes\nNo\nNot Applicable"
+  },
+  {
+   "description": "Repositories moved to the team lead or successor.",
+   "fieldname": "code_repository_transferred",
+   "fieldtype": "Check",
+   "label": "Code / Document Repository Transferred"
+  },
+  {
+   "fieldname": "column_break_manager",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Systems to revoke. Leave empty only by ticking Not Applicable below.",
+   "fieldname": "access_revocation_requested",
+   "fieldtype": "Table MultiSelect",
+   "label": "Project Access Revocation Requested",
+   "options": "Separation Access Revocation Item"
+  },
+  {
+   "default": "0",
+   "description": "Explicit N/A, so the field is never blank by omission.",
+   "fieldname": "access_revocation_not_applicable",
+   "fieldtype": "Check",
+   "label": "Access Revocation Not Applicable"
+  },
+  {
+   "description": "Operational release confirmation. Required before completing.",
+   "fieldname": "manager_remarks",
+   "fieldtype": "Small Text",
+   "label": "Manager Remarks / Sign-off"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Separation Manager Clearance",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-25 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Separation Manager Clearance",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Employee",
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name",
+ "track_changes": 1
+}

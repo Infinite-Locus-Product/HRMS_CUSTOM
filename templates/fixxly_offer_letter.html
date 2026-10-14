@@ -1,0 +1,240 @@
+{#-
+	Fixxly Offer Letter — print format for Job Offer (letter page + Annexure A; the candidate acknowledgement continues below the annexure, or below the letter when there is no CTC).
+
+	This file IS the template: the Print Format record ships with `html` empty and
+	frappe reads this file off disk at print time (printview.get_print_format).
+	Edit it here, in git, never in Desk (the record is `standard = Yes`).
+
+	Data sources
+	- Page 1 terms  : the Job Offer Terms child table (`doc.offer_terms`). HR fills it
+	                  from a Job Offer Term Template (Remuneration, Statutory Deductions,
+	                  Date of Joining, Location, Probation, Notice, Working Hours/Days …).
+	                  Designation / Department are printed from the document itself.
+	- Page 2 annex  : the Compensation tab (`custom_ctc_components`,
+	                  `custom_ctc_deductions`, computed `custom_*` summary fields —
+	                  see docs/JOB_OFFER_CTC.md).
+	- Header/footer : the Letter Head selected on the Job Offer (logo, company block,
+	                  CIN/GSTIN footer). Nothing company-specific is hard-coded here
+	                  except the signatory block below — change SIGNATORY_* to update.
+-#}
+{%- set SIGNATORY_NAME = "Shezaan Bhojani" -%}
+{%- set SIGNATORY_TITLE = "Co-Founder & CEO" -%}
+{%- set SIGNATORY_IMAGE = "/assets/myhr/images/ceo-signature.png" -%}  {#- shipped in myhr/public/images; set to "" to print a blank line instead -#}
+{%- set company_name = doc.company -%}
+{%- set department = frappe.db.get_value("Job Applicant", doc.job_applicant, "custom_department") if doc.job_applicant else "" -%}
+{%- set has_ctc = (doc.custom_ctc_components or doc.custom_ctc_deductions) -%}
+{%- macro money(v) -%}{{ frappe.utils.fmt_money(v or 0, precision=0, currency="INR") }}{%- endmacro -%}
+{#- Custom formats must render the Letter Head themselves (standard.html does it for
+	built-in layouts). With "Repeat Header and Footer" on in Print Settings, wkhtmltopdf
+	lifts #header-html / #footer-html onto every PDF page. -#}
+{%- macro page_header() -%}
+	<div {% if print_settings and print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+		{%- if letter_head and not no_letterhead %}<div class="letter-head">{{ letter_head }}</div>{% endif %}
+	</div>
+{%- endmacro -%}
+{%- macro page_footer() -%}
+	<div {% if print_settings and print_settings.repeat_header_footer %} id="footer-html" class="visible-pdf" {% endif %}>
+		{%- if footer and not no_letterhead %}<div class="letter-head-footer">{{ footer }}</div>{% endif %}
+	</div>
+{%- endmacro -%}
+{%- macro ack_block() -%}
+	<div class="ack">
+		<p><b>Candidate Acknowledgement</b></p>
+		<p>
+			I, {{ doc.applicant_name }}, hereby acknowledge receipt of this Offer Letter and confirm my acceptance
+			of the position of {{ doc.designation }} at {{ company_name }} on the terms and conditions stated above.
+		</p>
+		<div class="ack-sign">
+			<div>
+				<div class="sign-line">_______________________</div>
+				<div class="sign-name">{{ doc.applicant_name }}</div>
+				<div class="sign-title">Candidate Signature</div>
+			</div>
+			<div>Date: _______________</div>
+		</div>
+	</div>
+{%- endmacro -%}
+{%- macro sign_block() -%}
+	<div class="sign-block">
+		<p>Thanking You,<br>For {{ company_name }}</p>
+		{%- if SIGNATORY_IMAGE %}<img class="sign-img" src="{{ SIGNATORY_IMAGE }}" alt="">{% endif %}
+		<div class="sign-line">_______________________</div>
+		<div class="sign-name">{{ SIGNATORY_NAME }}</div>
+		<div class="sign-title">{{ SIGNATORY_TITLE }}</div>
+	</div>
+{%- endmacro -%}
+
+<style>
+	.offer { font-size: 10.5pt; line-height: 1.45; color: #222; }
+	.offer p { margin: 0 0 8px 0; }
+	.offer .date { font-weight: 600; margin-bottom: 18px; }
+	.offer h2.title { text-align: center; text-decoration: underline; font-size: 14pt; margin: 6px 0 18px; }
+	.offer .terms { margin: 10px 0 16px; }
+	.offer .terms .row-line { margin: 0 0 6px 0; }
+	.offer .terms b { display: inline-block; min-width: 170px; }
+	.offer ul.docs { margin: 4px 0 14px 18px; padding: 0; }
+	.offer ul.docs li { margin-bottom: 3px; }
+	.offer .sign-block { margin-top: 26px; }
+	.offer .sign-img { display: block; height: 44px; margin: 6px 0 -14px 8px; }
+	.offer .sign-line { margin-top: 22px; }
+	.offer .sign-name { font-weight: 700; margin-top: 4px; }
+	.offer .sign-title { color: #555; font-size: 9.5pt; }
+	.offer h3.annex { text-align: center; font-size: 11pt; margin: 0 0 14px; }
+	.offer .annex-head b { display: block; margin-bottom: 2px; }
+	.offer table.ctc { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 9.5pt; }
+	.offer table.ctc th, .offer table.ctc td { border: 1px solid #333; padding: 4px 6px; }
+	.offer table.ctc th { background: #ffff00; text-align: center; font-weight: 700; }
+	.offer table.ctc td.num { text-align: right; white-space: nowrap; width: 26%; }
+	.offer table.ctc tr.total td { font-weight: 700; }
+	.offer table.ctc tr.band td { background: #ffff00; font-weight: 700; }
+	.offer .note b { display: block; margin-top: 10px; }
+	.offer .ack { margin-top: 34px; padding-top: 14px; border-top: 1px dashed #999; page-break-inside: avoid; }
+	.offer .ack-sign { margin-top: 30px; display: flex; justify-content: space-between; }
+</style>
+
+<div class="offer">
+
+	{#- ============================ PAGE 1 : LETTER ============================ -#}
+	<div class="page-break">
+	{{ page_header() }}
+	<div class="date">Date: {{ frappe.utils.formatdate(doc.offer_date, "dd/MM/yyyy") }}</div>
+
+	<h2 class="title">OFFER LETTER</h2>
+
+	<p><b>Dear {{ doc.applicant_name }},</b></p>
+
+	<p>
+		With reference to your application and the subsequent interviews held with us, we are pleased to
+		offer you the position of <b>{{ doc.designation }}</b> at {{ company_name }}, on the following
+		terms and conditions:
+	</p>
+
+	<div class="terms">
+		<div class="row-line"><b>Designation :</b> {{ doc.designation or "" }}</div>
+		<div class="row-line"><b>Department :</b> {{ department or "" }}</div>
+		{%- for row in doc.offer_terms %}
+		<div class="row-line"><b>{{ row.offer_term }} :</b> {{ row.value or "" }}</div>
+		{%- endfor %}
+	</div>
+
+	<p>
+		The above is a broad outline of the terms and conditions of your employment with us. The detailed
+		terms and conditions would be outlined in the Appointment Letter, which will be given to you on the
+		date of joining.
+	</p>
+
+	<p><b>You are required to submit the following documents at the time of joining:</b></p>
+	<ul class="docs">
+		<li>4 Passport size photographs</li>
+		<li>PAN Card</li>
+		<li>Aadhaar Card</li>
+		<li>Address Proof</li>
+		<li>Educational Certificates</li>
+		<li>Relieving Letter from your last employer (if applicable)</li>
+	</ul>
+
+	<p>We are excited to welcome you to the {{ company_name }} team and look forward to a long and rewarding association.</p>
+
+	{{ sign_block() }}
+	{%- if not has_ctc %}{{ ack_block() }}{% endif %}
+	{{ page_footer() }}
+	</div>
+
+	{#- ============================ PAGE 2 : ANNEXURE A (acknowledgement continues below it) ============================ -#}
+	{%- if has_ctc %}
+	<div class="page-break">
+	{{ page_header() }}
+
+	<h3 class="annex">Annexure A</h3>
+
+	<div class="annex-head">
+		<b>Total Annual CTC: {{ money(doc.custom_total_annual_ctc) }}</b>
+		<b>Total Fixed Annual CTC: {{ money(doc.custom_total_fixed_ctc_annual) }}</b>
+		<b>Monthly Fixed CTC: {{ money(doc.custom_total_fixed_ctc_monthly) }}</b>
+	</div>
+
+	<table class="ctc">
+		<thead>
+			<tr><th>Components</th><th>Monthly</th><th>Annual</th></tr>
+		</thead>
+		<tbody>
+			{%- for row in doc.custom_ctc_components if row.component_type == "Earning" %}
+			<tr>
+				<td>{{ row.salary_component }}</td>
+				<td class="num">{{ money(row.monthly) }}</td>
+				<td class="num">{{ money(row.annual) }}</td>
+			</tr>
+			{%- endfor %}
+			<tr class="total">
+				<td>Gross CTC</td>
+				<td class="num">{{ money(doc.custom_gross_ctc_monthly) }}</td>
+				<td class="num">{{ money(doc.custom_gross_ctc_annual) }}</td>
+			</tr>
+			{%- for row in doc.custom_ctc_components if row.component_type == "Employer Contribution" %}
+			<tr>
+				<td>{{ row.salary_component }}</td>
+				<td class="num">{{ money(row.monthly) }}</td>
+				<td class="num">{{ money(row.annual) }}</td>
+			</tr>
+			{%- endfor %}
+			<tr class="total">
+				<td>Total Fixed CTC</td>
+				<td class="num">{{ money(doc.custom_total_fixed_ctc_monthly) }}</td>
+				<td class="num">{{ money(doc.custom_total_fixed_ctc_annual) }}</td>
+			</tr>
+			<tr>
+				<td>Variable Pay</td>
+				<td class="num"></td>
+				<td class="num">{{ money(doc.custom_variable_pay_annual) }}</td>
+			</tr>
+			<tr class="total">
+				<td>Total Annual CTC</td>
+				<td class="num"></td>
+				<td class="num">{{ money(doc.custom_total_annual_ctc) }}</td>
+			</tr>
+			<tr class="band"><td colspan="3">Deductions from salary per month</td></tr>
+			{%- for row in doc.custom_ctc_deductions %}
+			<tr>
+				<td>{{ row.salary_component }}</td>
+				<td class="num">{{ money(row.monthly) }}</td>
+				<td class="num"></td>
+			</tr>
+			{%- endfor %}
+			<tr class="total">
+				<td>Total Deductions</td>
+				<td class="num">{{ money(doc.custom_total_deductions_monthly) }}</td>
+				<td class="num"></td>
+			</tr>
+			<tr class="total">
+				<td>Take Home (per month)</td>
+				<td class="num">{{ money(doc.custom_take_home_monthly) }}</td>
+				<td class="num"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="note">
+		<b>Deductions:</b>
+		<p>
+			Kindly note that statutory deductions deducted from your monthly salary will be made in compliance
+			with Central Govt and State Govt rules &amp; regulations, as applicable. You will be required to
+			submit your IT declaration and your Income Tax liability will be computed accordingly.
+		</p>
+		<p>
+			Voluntary PF: PF contribution is restricted at a minimum of INR 1,800 per month. In case you wish
+			to contribute additionally to PF, please reach out to the HR Team.
+		</p>
+		<b>Benefits:</b>
+		<p>Medical insurance benefits will be provided as an additional benefit over and above CTC.</p>
+	</div>
+
+	{{ sign_block() }}
+	{{ ack_block() }}
+	{{ page_footer() }}
+	</div>
+	{%- endif %}
+
+
+</div>
+
+</div>

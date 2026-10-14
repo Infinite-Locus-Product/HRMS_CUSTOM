@@ -1,0 +1,161 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:PA-{####}",
+ "creation": "2026-04-25 21:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 0,
+ "engine": "InnoDB",
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "column_break_1",
+  "hr_policy",
+  "policy_name",
+  "section_break_status",
+  "policy_version",
+  "status",
+  "column_break_2",
+  "acknowledged_at",
+  "ip_address",
+  "section_break_super",
+  "superseded_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hr_policy",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "HR Policy",
+   "options": "HR Policy",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "hr_policy.policy_name",
+   "fieldname": "policy_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Policy Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_status",
+   "fieldtype": "Section Break",
+   "label": "Status"
+  },
+  {
+   "default": "1",
+   "fieldname": "policy_version",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Policy Version",
+   "read_only": 1
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Pending\nAcknowledged\nSuperseded\nWithdrawn",
+   "read_only": 1,
+   "description": "Pending: awaiting employee. Acknowledged: signed (terminal for the user). Superseded: replaced by a newer policy version. Withdrawn: policy was deactivated before the employee acked (terminal, not blocking)."
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "acknowledged_at",
+   "fieldtype": "Datetime",
+   "label": "Acknowledged At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ip_address",
+   "fieldtype": "Data",
+   "label": "IP Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_super",
+   "fieldtype": "Section Break",
+   "label": "Versioning",
+   "depends_on": "eval:doc.status === 'Superseded' || doc.superseded_by"
+  },
+  {
+   "fieldname": "superseded_by",
+   "fieldtype": "Link",
+   "label": "Superseded By",
+   "options": "Policy Acknowledgement",
+   "read_only": 1,
+   "description": "Newer Policy Acknowledgement that replaced this one (set when HR Policy file is updated)."
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-25 21:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Policy Acknowledgement",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employee"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

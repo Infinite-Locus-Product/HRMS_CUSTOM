@@ -1,0 +1,1534 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:AC-{####}",
+ "creation": "2026-04-04 16:38:41.754490",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "track_changes": 1,
+ "field_order": [
+  "employee",
+  "employee_name",
+  "status",
+  "submitted_for_review",
+  "submitted_on",
+  "submitted_by",
+  "tab_personal_details",
+  "sb_personal_basic",
+  "personal_full_name",
+  "personal_dob",
+  "personal_age",
+  "personal_date_of_joining",
+  "cb_personal_1",
+  "personal_gender",
+  "personal_marital_status",
+  "personal_mobile",
+  "personal_blood_group",
+  "personal_preferred_contact_email",
+  "sb_personal_family",
+  "personal_father_name",
+  "personal_father_dob",
+  "personal_mother_name",
+  "personal_mother_dob",
+  "personal_spouse_name",
+  "personal_spouse_gender",
+  "personal_spouse_dob",
+  "cb_personal_family",
+  "personal_child_1_name",
+  "personal_child_1_gender",
+  "personal_child_1_dob",
+  "personal_child_2_name",
+  "personal_child_2_gender",
+  "personal_child_2_dob",
+  "sb_personal_emergency",
+  "personal_emergency_contact_name",
+  "personal_emergency_contact_number",
+  "personal_emergency_relation",
+  "tab_required_docs",
+  "sb_aadhar",
+  "aadhar_number",
+  "aadhar_upload",
+  "aadhar_is_na",
+  "cb_aadhar_status",
+  "aadhar_approval_status",
+  "aadhar_remarks",
+  "sb_pan",
+  "pan_number",
+  "pan_upload",
+  "pan_is_na",
+  "cb_pan_status",
+  "pan_approval_status",
+  "pan_remarks",
+  "sb_education",
+  "education_name",
+  "education_upload",
+  "education_is_na",
+  "cb_education_status",
+  "education_approval_status",
+  "education_remarks",
+  "sb_passport",
+  "passport_number",
+  "passport_valid_upto",
+  "cb_passport",
+  "passport_date_of_issue",
+  "passport_place_of_issue",
+  "tab_declarations",
+  "sb_tax_regime",
+  "tax_regime",
+  "tax_regime_is_na",
+  "cb_tax_regime_status",
+  "tax_regime_approval_status",
+  "tax_regime_remarks",
+  "sb_medical_insurance",
+  "medical_insurance_opt_in",
+  "medical_insurance_policy",
+  "medical_insurance_signed_optout",
+  "medical_insurance_is_na",
+  "cb_medical_insurance_status",
+  "medical_insurance_approval_status",
+  "medical_insurance_remarks",
+  "sb_bank_statement_6m",
+  "bank_statement_6m_upload",
+  "bank_statement_6m_is_na",
+  "cb_bank_statement_6m_status",
+  "bank_statement_6m_approval_status",
+  "bank_statement_6m_remarks",
+  "tab_statutory_bank",
+  "sb_statutory",
+  "statutory_pf_number",
+  "statutory_uan_number",
+  "sb_form_1_wages_act",
+  "form_1_wages_act_upload",
+  "form_1_wages_act_is_na",
+  "cb_form_1_wages_act_status",
+  "form_1_wages_act_approval_status",
+  "form_1_wages_act_remarks",
+  "sb_form_2_nomination",
+  "form_2_nomination_upload",
+  "form_2_nomination_is_na",
+  "cb_form_2_nomination_status",
+  "form_2_nomination_approval_status",
+  "form_2_nomination_remarks",
+  "sb_form_f_gratuity",
+  "form_f_gratuity_upload",
+  "form_f_gratuity_is_na",
+  "cb_form_f_gratuity_status",
+  "form_f_gratuity_approval_status",
+  "form_f_gratuity_remarks",
+  "sb_pf_form_11_revised",
+  "pf_form_11_revised_upload",
+  "pf_form_11_revised_is_na",
+  "cb_pf_form_11_revised_status",
+  "pf_form_11_revised_approval_status",
+  "pf_form_11_revised_remarks",
+  "sb_bank_details",
+  "bank_account_holder_name",
+  "bank_name",
+  "bank_account_number",
+  "cb_bank_1",
+  "bank_ifsc_code",
+  "tab_recent_employer",
+  "sb_e1_period",
+  "employer_1_name",
+  "employer_1_from",
+  "employer_1_till",
+  "employer_1_is_na",
+  "sb_e1_offer",
+  "employer_1_offer_letter_doc",
+  "cb_e1_offer",
+  "employer_1_offer_letter_approval_status",
+  "employer_1_offer_letter_remarks",
+  "sb_e1_increment",
+  "employer_1_increment_letter_doc",
+  "cb_e1_increment",
+  "employer_1_increment_letter_approval_status",
+  "employer_1_increment_letter_remarks",
+  "sb_e1_pay_lm",
+  "employer_1_payslip_last_month_doc",
+  "cb_e1_pay_lm",
+  "employer_1_payslip_last_month_approval_status",
+  "employer_1_payslip_last_month_remarks",
+  "sb_e1_pay_llm",
+  "employer_1_payslip_last_to_last_month_doc",
+  "cb_e1_pay_llm",
+  "employer_1_payslip_last_to_last_month_approval_status",
+  "employer_1_payslip_last_to_last_month_remarks",
+  "sb_e1_pay_mbt",
+  "employer_1_payslip_month_before_that_doc",
+  "cb_e1_pay_mbt",
+  "employer_1_payslip_month_before_that_approval_status",
+  "employer_1_payslip_month_before_that_remarks",
+  "sb_e1_relieving",
+  "employer_1_relieving_or_resignation_doc",
+  "cb_e1_relieving",
+  "employer_1_relieving_or_resignation_approval_status",
+  "employer_1_relieving_or_resignation_remarks",
+  "tab_previous_employers",
+  "emp2_sb",
+  "employer_2_name",
+  "employer_2_from",
+  "employer_2_till",
+  "employer_2_doc",
+  "employer_2_is_na",
+  "cb_e2_status",
+  "employer_2_approval_status",
+  "employer_2_remarks",
+  "emp3_sb",
+  "employer_3_name",
+  "employer_3_from",
+  "employer_3_till",
+  "employer_3_doc",
+  "employer_3_is_na",
+  "cb_e3_status",
+  "employer_3_approval_status",
+  "employer_3_remarks",
+  "emp4_sb",
+  "employer_4_name",
+  "employer_4_from",
+  "employer_4_till",
+  "employer_4_doc",
+  "employer_4_is_na",
+  "cb_e4_status",
+  "employer_4_approval_status",
+  "employer_4_remarks",
+  "emp5_sb",
+  "employer_5_name",
+  "employer_5_from",
+  "employer_5_till",
+  "employer_5_doc",
+  "employer_5_is_na",
+  "cb_e5_status",
+  "employer_5_approval_status",
+  "employer_5_remarks",
+  "tab_activity",
+  "activity_logs"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending\nIn Progress\nReady to Submit\nTo be Reviewed\nAccepted\nAction Required",
+   "permlevel": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "submitted_for_review",
+   "fieldtype": "Check",
+   "label": "Submitted for Review",
+   "read_only": 1
+  },
+  {
+   "fieldname": "submitted_on",
+   "fieldtype": "Datetime",
+   "label": "Submitted On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "submitted_by",
+   "fieldtype": "Link",
+   "label": "Submitted By",
+   "options": "User",
+   "read_only": 1,
+   "description": "User who tapped Submit. Server-stamped; immutable once set."
+  },
+  {
+   "fieldname": "tab_required_docs",
+   "fieldtype": "Tab Break",
+   "label": "Identity Documents"
+  },
+  {
+   "fieldname": "sb_aadhar",
+   "fieldtype": "Section Break",
+   "label": "Aadhar"
+  },
+  {
+   "fieldname": "aadhar_upload",
+   "fieldtype": "Attach",
+   "label": "Aadhar Upload",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "aadhar_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_aadhar_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "aadhar_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "aadhar_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_pan",
+   "fieldtype": "Section Break",
+   "label": "PAN"
+  },
+  {
+   "fieldname": "pan_upload",
+   "fieldtype": "Attach",
+   "label": "PAN Upload",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "pan_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_pan_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "pan_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "pan_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_education",
+   "fieldtype": "Section Break",
+   "label": "Highest Educational Qualification Certificate"
+  },
+  {
+   "fieldname": "education_upload",
+   "fieldtype": "Attach",
+   "label": "Education Certificate",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "education_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_education_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "education_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "education_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_passport",
+   "fieldtype": "Section Break",
+   "label": "Passport"
+  },
+  {
+   "fieldname": "passport_number",
+   "fieldtype": "Small Text",
+   "label": "Passport Number",
+   "fetch_from": "employee.passport_number",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "passport_valid_upto",
+   "fieldtype": "Date",
+   "label": "Valid Up To",
+   "fetch_from": "employee.valid_upto",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_passport",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "passport_date_of_issue",
+   "fieldtype": "Date",
+   "label": "Date of Issue",
+   "fetch_from": "employee.date_of_issue",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "passport_place_of_issue",
+   "fieldtype": "Small Text",
+   "label": "Place of Issue",
+   "fetch_from": "employee.place_of_issue",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_declarations",
+   "fieldtype": "Tab Break",
+   "label": "Declarations"
+  },
+  {
+   "fieldname": "sb_tax_regime",
+   "fieldtype": "Section Break",
+   "label": "Tax Regime"
+  },
+  {
+   "fieldname": "tax_regime",
+   "fieldtype": "Select",
+   "label": "Tax Regime",
+   "options": "\nNew Tax Regime\nOld Tax Regime",
+   "description": "Employee's chosen income-tax regime for the financial year. HR reviews and approves.",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "tax_regime_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_tax_regime_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "tax_regime_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "tax_regime_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_medical_insurance",
+   "fieldtype": "Section Break",
+   "label": "Medical Insurance"
+  },
+  {
+   "fieldname": "medical_insurance_opt_in",
+   "fieldtype": "Select",
+   "label": "Medical Insurance Choice",
+   "options": "\nOpt In\nOpt Out",
+   "description": "Employee chooses Opt In (use company medical insurance) or Opt Out (sign and upload the opt-out declaration).",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_insurance_policy",
+   "fieldtype": "Link",
+   "label": "Selected Policy",
+   "options": "Medical Insurance",
+   "depends_on": "eval:doc.medical_insurance_opt_in==='Opt In'",
+   "permlevel": 1,
+   "description": "HR-set after opt-in. Employee sees which policy applies; HR uploads/maintains the policy document in the Medical Insurance master."
+  },
+  {
+   "fieldname": "medical_insurance_signed_optout",
+   "fieldtype": "Attach",
+   "label": "Signed Opt-Out Declaration",
+   "depends_on": "eval:doc.medical_insurance_opt_in==='Opt Out'",
+   "description": "Employee uploads the signed opt-out declaration here. The blank template is HR-managed in 'Medical Insurance Opt Out Declaration' and surfaced read-only in the PWA.",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "medical_insurance_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_medical_insurance_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "medical_insurance_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "medical_insurance_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_bank_statement_6m",
+   "fieldtype": "Section Break",
+   "label": "Bank Statement (Last 6 Months)"
+  },
+  {
+   "fieldname": "bank_statement_6m_upload",
+   "fieldtype": "Attach",
+   "label": "Bank Statement Upload",
+   "description": "PDF of the last 6 months' bank statement.",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "bank_statement_6m_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_bank_statement_6m_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "bank_statement_6m_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "bank_statement_6m_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "tab_recent_employer",
+   "fieldtype": "Tab Break",
+   "label": "Most Recent Employer"
+  },
+  {
+   "fieldname": "sb_e1_period",
+   "fieldtype": "Section Break",
+   "label": "Employment Period"
+  },
+  {
+   "fieldname": "employer_1_name",
+   "fieldtype": "Data",
+   "label": "Employer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_1_from",
+   "fieldtype": "Date",
+   "label": "From",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_1_till",
+   "fieldtype": "Date",
+   "label": "Till",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Tick if the employee has no prior employer (e.g. fresher). Wipes the Most Recent Employer block and skips its mandatory documents.",
+   "fieldname": "employer_1_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_e1_offer",
+   "fieldtype": "Section Break",
+   "label": "Offer Letter"
+  },
+  {
+   "fieldname": "employer_1_offer_letter_doc",
+   "fieldtype": "Attach",
+   "label": "Offer Letter",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e1_offer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_1_offer_letter_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_1_offer_letter_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_e1_increment",
+   "fieldtype": "Section Break",
+   "label": "Increment Letter"
+  },
+  {
+   "fieldname": "employer_1_increment_letter_doc",
+   "fieldtype": "Attach",
+   "label": "Increment Letter",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e1_increment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_1_increment_letter_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_1_increment_letter_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_e1_pay_lm",
+   "fieldtype": "Section Break",
+   "label": "Pay Slip \u2014 Last Month"
+  },
+  {
+   "fieldname": "employer_1_payslip_last_month_doc",
+   "fieldtype": "Attach",
+   "label": "Pay Slip - Last Month",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e1_pay_lm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_1_payslip_last_month_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_1_payslip_last_month_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_e1_pay_llm",
+   "fieldtype": "Section Break",
+   "label": "Pay Slip \u2014 Last-to-Last Month"
+  },
+  {
+   "fieldname": "employer_1_payslip_last_to_last_month_doc",
+   "fieldtype": "Attach",
+   "label": "Pay Slip - Last-to-Last Month",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e1_pay_llm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_1_payslip_last_to_last_month_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_1_payslip_last_to_last_month_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_e1_pay_mbt",
+   "fieldtype": "Section Break",
+   "label": "Pay Slip \u2014 Month Before That"
+  },
+  {
+   "fieldname": "employer_1_payslip_month_before_that_doc",
+   "fieldtype": "Attach",
+   "label": "Pay Slip - Month Before That",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e1_pay_mbt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_1_payslip_month_before_that_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_1_payslip_month_before_that_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_e1_relieving",
+   "fieldtype": "Section Break",
+   "label": "Relieving Letter / Resignation Acceptance"
+  },
+  {
+   "fieldname": "employer_1_relieving_or_resignation_doc",
+   "fieldtype": "Attach",
+   "label": "Relieving Letter / Resignation Acceptance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e1_relieving",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_1_relieving_or_resignation_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_1_relieving_or_resignation_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "tab_previous_employers",
+   "fieldtype": "Tab Break",
+   "label": "Previous Employers"
+  },
+  {
+   "fieldname": "emp2_sb",
+   "fieldtype": "Section Break",
+   "label": "Previous Employer 2"
+  },
+  {
+   "fieldname": "employer_2_name",
+   "fieldtype": "Data",
+   "label": "Employer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_2_from",
+   "fieldtype": "Date",
+   "label": "From",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_2_till",
+   "fieldtype": "Date",
+   "label": "Till",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_2_doc",
+   "fieldtype": "Attach",
+   "label": "Relieving Letter / Resignation Acceptance",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "employer_2_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e2_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_2_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_2_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "emp3_sb",
+   "fieldtype": "Section Break",
+   "label": "Previous Employer 3"
+  },
+  {
+   "fieldname": "employer_3_name",
+   "fieldtype": "Data",
+   "label": "Employer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_3_from",
+   "fieldtype": "Date",
+   "label": "From",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_3_till",
+   "fieldtype": "Date",
+   "label": "Till",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_3_doc",
+   "fieldtype": "Attach",
+   "label": "Relieving Letter / Resignation Acceptance",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "employer_3_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e3_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_3_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_3_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "emp4_sb",
+   "fieldtype": "Section Break",
+   "label": "Previous Employer 4"
+  },
+  {
+   "fieldname": "employer_4_name",
+   "fieldtype": "Data",
+   "label": "Employer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_4_from",
+   "fieldtype": "Date",
+   "label": "From",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_4_till",
+   "fieldtype": "Date",
+   "label": "Till",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_4_doc",
+   "fieldtype": "Attach",
+   "label": "Relieving Letter / Resignation Acceptance",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "employer_4_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e4_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_4_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_4_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "emp5_sb",
+   "fieldtype": "Section Break",
+   "label": "Previous Employer 5"
+  },
+  {
+   "fieldname": "employer_5_name",
+   "fieldtype": "Data",
+   "label": "Employer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_5_from",
+   "fieldtype": "Date",
+   "label": "From",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_5_till",
+   "fieldtype": "Date",
+   "label": "Till",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employer_5_doc",
+   "fieldtype": "Attach",
+   "label": "Relieving Letter / Resignation Acceptance",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "employer_5_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_e5_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "employer_5_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "employer_5_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "tab_activity",
+   "fieldtype": "Tab Break",
+   "label": "Activity Log"
+  },
+  {
+   "fieldname": "activity_logs",
+   "fieldtype": "Table",
+   "label": "Activity Logs",
+   "options": "Action Centre Activity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_personal_details",
+   "fieldtype": "Tab Break",
+   "label": "Personal Details"
+  },
+  {
+   "fieldname": "sb_personal_basic",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "personal_full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "fetch_from": "employee.employee_name",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "Alphabets only."
+  },
+  {
+   "fieldname": "personal_dob",
+   "fieldtype": "Date",
+   "label": "Date of Birth",
+   "fetch_from": "employee.date_of_birth",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "Cannot be a future date."
+  },
+  {
+   "fieldname": "personal_age",
+   "fieldtype": "Data",
+   "label": "Age",
+   "read_only": 1,
+   "description": "Auto-computed from Date of Birth on save."
+  },
+  {
+   "fieldname": "personal_date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining",
+   "fetch_from": "employee.date_of_joining",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "Pulled from the Employee record."
+  },
+  {
+   "fieldname": "cb_personal_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "personal_gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale\nOther",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_marital_status",
+   "fieldtype": "Select",
+   "label": "Marital Status",
+   "options": "\nSingle\nMarried\nOther",
+   "fetch_from": "employee.marital_status",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_mobile",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "fetch_from": "employee.cell_number",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "10-digit number, digits only."
+  },
+  {
+   "fieldname": "personal_blood_group",
+   "fieldtype": "Select",
+   "label": "Blood Group",
+   "options": "\nA+\nA-\nB+\nB-\nO+\nO-\nAB+\nAB-",
+   "fetch_from": "employee.blood_group",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_preferred_contact_email",
+   "fieldtype": "Select",
+   "label": "Preferred Contact Email",
+   "options": "\nCompany Email\nPersonal Email\nUser ID",
+   "fetch_from": "employee.prefered_contact_email",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_personal_family",
+   "fieldtype": "Section Break",
+   "label": "Family"
+  },
+  {
+   "fieldname": "personal_father_name",
+   "fieldtype": "Data",
+   "label": "Father's Name",
+   "fetch_from": "employee.custom_father_name",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "Alphabets only."
+  },
+  {
+   "fieldname": "personal_father_dob",
+   "fieldtype": "Date",
+   "label": "Father's DOB",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_mother_name",
+   "fieldtype": "Data",
+   "label": "Mother's Name",
+   "fetch_from": "employee.custom_mother_name",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "Alphabets only."
+  },
+  {
+   "fieldname": "personal_mother_dob",
+   "fieldtype": "Date",
+   "label": "Mother's DOB",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_spouse_name",
+   "fieldtype": "Small Text",
+   "label": "Spouse Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_spouse_gender",
+   "fieldtype": "Select",
+   "label": "Spouse Gender",
+   "options": "\nMale\nFemale\nOther",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_spouse_dob",
+   "fieldtype": "Date",
+   "label": "Spouse DOB",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_personal_family",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "personal_child_1_name",
+   "fieldtype": "Small Text",
+   "label": "Child 1 - Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_child_1_gender",
+   "fieldtype": "Select",
+   "label": "Child 1 - Gender",
+   "options": "\nMale\nFemale\nOther",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_child_1_dob",
+   "fieldtype": "Date",
+   "label": "Child 1 - DOB",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_child_2_name",
+   "fieldtype": "Small Text",
+   "label": "Child 2 - Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_child_2_gender",
+   "fieldtype": "Select",
+   "label": "Child 2 - Gender",
+   "options": "\nMale\nFemale\nOther",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_child_2_dob",
+   "fieldtype": "Date",
+   "label": "Child 2 - DOB",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_personal_emergency",
+   "fieldtype": "Section Break",
+   "label": "Emergency Contact"
+  },
+  {
+   "fieldname": "personal_emergency_contact_name",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Name",
+   "fetch_from": "employee.person_to_be_contacted",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "Alphabets only."
+  },
+  {
+   "fieldname": "personal_emergency_contact_number",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Number",
+   "fetch_from": "employee.emergency_phone_number",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "10-digit number, digits only."
+  },
+  {
+   "fieldname": "personal_emergency_relation",
+   "fieldtype": "Small Text",
+   "label": "Relation",
+   "fetch_from": "employee.relation",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "aadhar_number",
+   "fieldtype": "Data",
+   "label": "Aadhar Number",
+   "fetch_from": "employee.custom_aadhar_number",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "12-digit Aadhar number, digits only."
+  },
+  {
+   "fieldname": "pan_number",
+   "fieldtype": "Data",
+   "label": "PAN Number",
+   "fetch_from": "employee.pan_number",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "10-character PAN format ABCDE1234F."
+  },
+  {
+   "fieldname": "education_name",
+   "fieldtype": "Data",
+   "label": "Degree / Qualification Name",
+   "fetch_from": "employee.custom_highest_qualification",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_statutory_bank",
+   "fieldtype": "Tab Break",
+   "label": "Statutory & Bank"
+  },
+  {
+   "fieldname": "sb_statutory",
+   "fieldtype": "Section Break",
+   "label": "Statutory"
+  },
+  {
+   "fieldname": "statutory_pf_number",
+   "fieldtype": "Data",
+   "label": "PF Number",
+   "fetch_from": "employee.provident_fund_account",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "Optional."
+  },
+  {
+   "fieldname": "statutory_uan_number",
+   "fieldtype": "Data",
+   "label": "UAN Number",
+   "fetch_from": "employee.custom_uan",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "description": "12-digit UAN."
+  },
+  {
+   "fieldname": "sb_form_1_wages_act",
+   "fieldtype": "Section Break",
+   "label": "Form 1 Payment of Wages Act"
+  },
+  {
+   "fieldname": "form_1_wages_act_upload",
+   "fieldtype": "Attach",
+   "label": "Form 1 Payment of Wages Act",
+   "description": "Signed Form 1 Payment of Wages Act (PDF preferred).",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "form_1_wages_act_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_form_1_wages_act_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "form_1_wages_act_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "form_1_wages_act_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_form_2_nomination",
+   "fieldtype": "Section Break",
+   "label": "Form 2 Nomination"
+  },
+  {
+   "fieldname": "form_2_nomination_upload",
+   "fieldtype": "Attach",
+   "label": "Form 2 Nomination",
+   "description": "Signed Form 2 Nomination (PDF preferred).",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "form_2_nomination_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_form_2_nomination_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "form_2_nomination_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "form_2_nomination_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_form_f_gratuity",
+   "fieldtype": "Section Break",
+   "label": "Form F Payment of Gratuity"
+  },
+  {
+   "fieldname": "form_f_gratuity_upload",
+   "fieldtype": "Attach",
+   "label": "Form F Payment of Gratuity",
+   "description": "Signed Form F Payment of Gratuity (PDF preferred).",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "form_f_gratuity_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_form_f_gratuity_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "form_f_gratuity_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "form_f_gratuity_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_pf_form_11_revised",
+   "fieldtype": "Section Break",
+   "label": "PF Form 11 Revised"
+  },
+  {
+   "fieldname": "pf_form_11_revised_upload",
+   "fieldtype": "Attach",
+   "label": "PF Form 11 Revised",
+   "description": "Signed PF Form 11 Revised (PDF preferred).",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "pf_form_11_revised_is_na",
+   "fieldtype": "Check",
+   "label": "Not Applicable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_pf_form_11_revised_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "pf_form_11_revised_approval_status",
+   "fieldtype": "Select",
+   "label": "HR Status",
+   "options": "Pending\nAwaiting HR\nAccepted\nRejected",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "pf_form_11_revised_remarks",
+   "fieldtype": "Small Text",
+   "label": "HR Remarks",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "sb_bank_details",
+   "fieldtype": "Section Break",
+   "label": "Bank Details"
+  },
+  {
+   "fieldname": "bank_account_holder_name",
+   "fieldtype": "Small Text",
+   "label": "Name as per Bank Records",
+   "read_only": 1
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name",
+   "fetch_from": "employee.custom_bank_name",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "bank_account_number",
+   "fieldtype": "Data",
+   "label": "Bank Account Number",
+   "fetch_from": "employee.custom_account_number",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_bank_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_ifsc_code",
+   "fieldtype": "Data",
+   "label": "IFSC Code",
+   "fetch_from": "employee.custom_ifsc_code",
+   "fetch_if_empty": 1,
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-10 19:33:58.567561",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Employee Action Centre",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

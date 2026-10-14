@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:MCR-{YYYY}-{#####}",
+ "creation": "2026-05-18 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "reminder_date",
+  "column_break_1",
+  "status",
+  "skip_reason",
+  "section_break_send",
+  "email_sent_to",
+  "sent_at",
+  "section_break_err",
+  "error_message"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "fetch_from": "employee.employee_name",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reminder_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Reminder Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Sent\nSkipped\nFailed",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "skip_reason",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Skip Reason",
+   "options": "none\nholiday\nleave\nmissing_email\nalready_checked_in\ninactive\nopt_out",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_send",
+   "fieldtype": "Section Break",
+   "label": "Email"
+  },
+  {
+   "fieldname": "email_sent_to",
+   "fieldtype": "Data",
+   "label": "Email Sent To",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sent_at",
+   "fieldtype": "Datetime",
+   "label": "Sent At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_err",
+   "fieldtype": "Section Break",
+   "label": "Error"
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Long Text",
+   "label": "Error Message",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-19 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Missing Checkin Reminder Log",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0, "delete": 1, "email": 1, "export": 1, "print": 1,
+   "read": 1, "report": 1, "role": "System Manager", "share": 0, "write": 0
+  },
+  {
+   "create": 0, "delete": 0, "email": 1, "export": 1, "print": 1,
+   "read": 1, "report": 1, "role": "HR Manager", "share": 0, "write": 0
+  },
+  {
+   "create": 0, "delete": 0, "email": 0, "export": 1, "print": 1,
+   "read": 1, "report": 1, "role": "HR User", "share": 0, "write": 0
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

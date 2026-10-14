@@ -1,0 +1,159 @@
+{#-
+	Fixxly Appointment Letter / Employment Agreement — print format for Appointment Letter.
+
+	REFERENCE COPY. The live Print Format is created by hand in Desk on each server
+	(Jinja, Custom Format ticked, this file pasted into the HTML field). This folder is
+	outside the myhr Python package, so Frappe never installs it. See
+	docs/STAGING_SETUP_RECRUITMENT.md §3.
+
+	Where the text comes from
+	- Introduction (page 1 welcome letter), Terms rows (agreement clauses) and Closing
+	  Notes (acceptance block) are copied onto the Appointment Letter from the
+	  "Fixxly Employment Agreement" Appointment Letter Template. Each of them may use
+	  the placeholders listed in VARIABLES below; they are rendered with frappe.render_template.
+	- The Salary Annexure is read from the linked Job Offer (custom_job_offer).
+	- Header/footer come from the Letter Head selected on the Appointment Letter.
+
+	VARIABLES available inside template text:
+	  {{ employee_name }}  {{ salutation }} (Mr./Ms.)  {{ child_of }} (Son/Daughter)
+	  {{ father_name }}  {{ address }}  {{ designation }}  {{ work_arrangement }}
+	  {{ place_of_posting }}  {{ doj }}  {{ ctc_annual }}  {{ gross_monthly }}  {{ company }}
+	  (ctc_annual / gross_monthly are plain formatted numbers, e.g. 6,75,012 — the clause text supplies "INR")
+-#}
+{%- set SIGNATORY_NAME = "Shezaan Bhojani" -%}
+{%- set SIGNATORY_TITLE = "Co-Founder & CEO" -%}
+{%- set SIGNATORY_IMAGE = "/assets/myhr/images/ceo-signature.png" -%}
+
+{#- ---------- sources ---------- -#}
+{%- set ja = frappe.get_doc("Job Applicant", doc.job_applicant) if doc.job_applicant else None -%}
+{%- set offer = frappe.get_doc("Job Offer", doc.custom_job_offer) if doc.custom_job_offer else None -%}
+{%- macro offer_term(label) -%}
+	{%- if offer -%}
+		{%- for t in offer.offer_terms if t.offer_term == label -%}{{ t.value or "" }}{%- endfor -%}
+	{%- endif -%}
+{%- endmacro -%}
+{%- set gender = (ja.custom_gender if ja else "") or "" -%}
+{%- set ctx = {
+	"employee_name": doc.applicant_name or (ja.applicant_name if ja else ""),
+	"salutation": "Mr." if gender == "Male" else ("Ms." if gender == "Female" else "Mr. / Ms."),
+	"child_of": "Son" if gender == "Male" else ("Daughter" if gender == "Female" else "Son / Daughter"),
+	"father_name": (ja.custom_father_name if ja else "") or "",
+	"address": ((ja.custom_permanent_address or ja.custom_current_address) if ja else "") or "",
+	"designation": (offer.designation if offer else (ja.designation if ja else "")) or "",
+	"work_arrangement": offer_term("Work Arrangement") | trim,
+	"place_of_posting": offer_term("Location") | trim,
+	"doj": frappe.utils.formatdate(doc.appointment_date, "dd/MM/yyyy") if doc.appointment_date else "",
+	"ctc_annual": frappe.utils.fmt_money(offer.custom_total_annual_ctc, precision=0) if offer else "",
+	"gross_monthly": frappe.utils.fmt_money(offer.custom_gross_ctc_monthly, precision=0) if offer else "",
+	"company": doc.company or "",
+} -%}
+{%- macro render(text) -%}{{ frappe.render_template(text or "", ctx) | replace("\n", "<br>") }}{%- endmacro -%}
+{%- macro money(v) -%}{{ frappe.utils.fmt_money(v or 0, precision=0, currency="INR") }}{%- endmacro -%}
+
+{#- ---------- letter head on every page (custom formats must render it themselves) ---------- -#}
+{%- macro page_header() -%}
+	<div {% if print_settings and print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+		{%- if letter_head and not no_letterhead %}<div class="letter-head">{{ letter_head }}</div>{% endif %}
+	</div>
+{%- endmacro -%}
+{%- macro page_footer() -%}
+	<div {% if print_settings and print_settings.repeat_header_footer %} id="footer-html" class="visible-pdf" {% endif %}>
+		{%- if footer and not no_letterhead %}<div class="letter-head-footer">{{ footer }}</div>{% endif %}
+	</div>
+{%- endmacro -%}
+{%- macro sign_block(label) -%}
+	<div class="sign-block">
+		<p>{{ label }}<br>For {{ ctx.company }}</p>
+		{%- if SIGNATORY_IMAGE %}<img class="sign-img" src="{{ SIGNATORY_IMAGE }}" alt="">{% endif %}
+		<div class="sign-line">_______________________</div>
+		<div class="sign-name">{{ SIGNATORY_NAME }}</div>
+		<div class="sign-title">{{ SIGNATORY_TITLE }} · Authorized Signatory</div>
+	</div>
+{%- endmacro -%}
+
+<style>
+	.appt { font-size: 10.5pt; line-height: 1.5; color: #222; text-align: justify; }
+	.appt p { margin: 0 0 8px 0; }
+	.appt .date { font-weight: 600; margin-bottom: 14px; }
+	.appt h2.title { text-align: center; font-size: 14pt; margin: 6px 0 16px; letter-spacing: .5px; }
+	.appt h4.clause { font-size: 10.5pt; font-weight: 700; margin: 14px 0 4px; }
+	.appt .clause-body { margin-bottom: 4px; }
+	.appt .sign-block { margin-top: 26px; }
+	.appt .sign-img { display: block; height: 44px; margin: 6px 0 -14px 8px; }
+	.appt .sign-line { margin-top: 22px; }
+	.appt .sign-name { font-weight: 700; margin-top: 4px; }
+	.appt .sign-title { color: #555; font-size: 9.5pt; }
+	.appt .closing { margin-top: 24px; }
+	.appt h3.annex { text-align: center; font-size: 11pt; margin: 0 0 14px; }
+	.appt .annex-head b { display: block; margin-bottom: 2px; }
+	.appt table.ctc { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 9.5pt; }
+	.appt table.ctc th, .appt table.ctc td { border: 1px solid #333; padding: 4px 6px; }
+	.appt table.ctc th { background: #ffff00; text-align: center; font-weight: 700; }
+	.appt table.ctc td.num { text-align: right; white-space: nowrap; width: 26%; }
+	.appt table.ctc tr.total td { font-weight: 700; }
+	.appt table.ctc tr.band td { background: #ffff00; font-weight: 700; }
+</style>
+
+<div class="appt">
+
+	{#- ============================ PAGE 1 : WELCOME LETTER (Introduction) ============================ -#}
+	<div class="page-break">
+	{{ page_header() }}
+	<h2 class="title">WELCOME TO FIXXLY</h2>
+	<div class="date">Date: {{ ctx.doj }}</div>
+	<div>{{ render(doc.introduction) }}</div>
+	{{ sign_block("Warm Regards,") }}
+	{{ page_footer() }}
+	</div>
+
+	{#- ============================ AGREEMENT (Terms rows) ============================ -#}
+	<div class="page-break">
+	{{ page_header() }}
+	<h2 class="title">EMPLOYMENT AGREEMENT</h2>
+	{%- for row in doc.terms %}
+	<h4 class="clause">{{ row.title }}</h4>
+	<div class="clause-body">{{ render(row.description) }}</div>
+	{%- endfor %}
+
+	{#- ---------- Closing Notes: IN WITNESS WHEREOF + acceptance ---------- -#}
+	<div class="closing">{{ render(doc.closing_notes) }}</div>
+	{{ sign_block("IN WITNESS WHEREOF, executed on " ~ ctx.doj ~ ".") }}
+	{{ page_footer() }}
+	</div>
+
+	{#- ============================ SALARY ANNEXURE (from the Job Offer) ============================ -#}
+	{%- if offer and (offer.custom_ctc_components or offer.custom_ctc_deductions) %}
+	<div class="page-break">
+	{{ page_header() }}
+	<h3 class="annex">Salary Annexure</h3>
+	<div class="annex-head">
+		<b>Total Annual CTC: {{ money(offer.custom_total_annual_ctc) }}</b>
+		<b>Total Fixed Annual CTC: {{ money(offer.custom_total_fixed_ctc_annual) }}</b>
+		<b>Monthly Fixed CTC: {{ money(offer.custom_total_fixed_ctc_monthly) }}</b>
+	</div>
+	<table class="ctc">
+		<thead><tr><th>Components</th><th>Monthly</th><th>Annual</th></tr></thead>
+		<tbody>
+			{%- for row in offer.custom_ctc_components if row.component_type == "Earning" %}
+			<tr><td>{{ row.salary_component }}</td><td class="num">{{ money(row.monthly) }}</td><td class="num">{{ money(row.annual) }}</td></tr>
+			{%- endfor %}
+			<tr class="total"><td>Gross CTC</td><td class="num">{{ money(offer.custom_gross_ctc_monthly) }}</td><td class="num">{{ money(offer.custom_gross_ctc_annual) }}</td></tr>
+			{%- for row in offer.custom_ctc_components if row.component_type == "Employer Contribution" %}
+			<tr><td>{{ row.salary_component }}</td><td class="num">{{ money(row.monthly) }}</td><td class="num">{{ money(row.annual) }}</td></tr>
+			{%- endfor %}
+			<tr class="total"><td>Total Fixed CTC</td><td class="num">{{ money(offer.custom_total_fixed_ctc_monthly) }}</td><td class="num">{{ money(offer.custom_total_fixed_ctc_annual) }}</td></tr>
+			<tr><td>Variable Pay</td><td class="num"></td><td class="num">{{ money(offer.custom_variable_pay_annual) }}</td></tr>
+			<tr class="total"><td>Total Annual CTC</td><td class="num"></td><td class="num">{{ money(offer.custom_total_annual_ctc) }}</td></tr>
+			<tr class="band"><td colspan="3">Deductions from salary per month</td></tr>
+			{%- for row in offer.custom_ctc_deductions %}
+			<tr><td>{{ row.salary_component }}</td><td class="num">{{ money(row.monthly) }}</td><td class="num"></td></tr>
+			{%- endfor %}
+			<tr class="total"><td>Total Deductions</td><td class="num">{{ money(offer.custom_total_deductions_monthly) }}</td><td class="num"></td></tr>
+			<tr class="total"><td>Take Home (per month)</td><td class="num">{{ money(offer.custom_take_home_monthly) }}</td><td class="num"></td></tr>
+		</tbody>
+	</table>
+	{{ page_footer() }}
+	</div>
+	{%- endif %}
+
+</div>

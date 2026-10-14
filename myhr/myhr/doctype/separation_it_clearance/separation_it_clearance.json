@@ -1,0 +1,210 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:SITC-{employee}-{#####}",
+ "creation": "2026-09-25 11:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_separation",
+  "employee",
+  "employee_name",
+  "column_break_context",
+  "department",
+  "reporting_manager",
+  "last_working_day",
+  "separation_status",
+  "hardware_section",
+  "assets",
+  "total_recovery_amount",
+  "access_section",
+  "access_revocation_datetime",
+  "column_break_access",
+  "mailbox_forwarding_address",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "description": "One IT clearance per separation, enforced by the unique index.",
+   "fieldname": "employee_separation",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee Separation",
+   "options": "Employee Separation",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "employee_separation.employee",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_separation.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_context",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee_separation.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_separation.custom_reporting_manager",
+   "fieldname": "reporting_manager",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Reporting Manager",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "description": "The approved relieving date. Access revocation cannot be scheduled past 23:59 on this day.",
+   "fetch_from": "employee_separation.custom_approved_relieving_date",
+   "fieldname": "last_working_day",
+   "fieldtype": "Date",
+   "label": "Last Working Day",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee_separation.workflow_state",
+   "fieldname": "separation_status",
+   "fieldtype": "Data",
+   "label": "Separation Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hardware_section",
+   "fieldtype": "Section Break",
+   "label": "Hardware Returned"
+  },
+  {
+   "description": "One row per item. Any row marked Returned needs a Condition; Damaged or Missing needs a Recovery Amount.",
+   "fieldname": "assets",
+   "fieldtype": "Table",
+   "label": "Assets",
+   "options": "Separation IT Asset"
+  },
+  {
+   "description": "Sum of the rows above. Recomputed on every save; this is the figure Finance Clearance recovers.",
+   "fieldname": "total_recovery_amount",
+   "fieldtype": "Currency",
+   "label": "Total Recovery Amount",
+   "no_copy": 1,
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "access_section",
+   "fieldtype": "Section Break",
+   "label": "Access & Mailbox"
+  },
+  {
+   "description": "Defaults to 23:59 on the last working day. IT may bring it earlier, never later.",
+   "fieldname": "access_revocation_datetime",
+   "fieldtype": "Datetime",
+   "label": "Access Revocation Date & Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_access",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Optional. Must be an internal company address (see HR Settings > Internal Email Domains).",
+   "fieldname": "mailbox_forwarding_address",
+   "fieldtype": "Data",
+   "label": "Mailbox Forwarding Address",
+   "options": "Email"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Separation IT Clearance",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-25 11:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Separation IT Clearance",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employee"
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name",
+ "track_changes": 1
+}

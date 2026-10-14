@@ -1,0 +1,35 @@
+[pre_model_sync]
+# Patches added in this section will be executed before doctypes are migrated
+# Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
+
+[post_model_sync]
+# Patches added in this section will be executed after doctypes are migrated
+myhr.patches.v1_0_backfill_employee_directory
+myhr.patches.v1_1_remove_hr_approver
+myhr.patches.v1_1_split_policy_acknowledgement
+myhr.patches.v1_2_hr_controls_tab
+myhr.patches.v1_3_dedupe_pa_and_add_unique_index
+myhr.patches.v1_4_drop_policy_action_task
+myhr.patches.v1_5_withdraw_pending_on_inactive_policies
+myhr.patches.v1_6_dedupe_eac_and_add_unique_index
+myhr.patches.v1_7_fix_holiday_type_for_weekly_off
+myhr.patches.v1_8_repair_custom_field_flags
+myhr.patches.v1_9_repair_hr_controls_tab_placement
+myhr.patches.v1_10_employee_view_reporting
+myhr.patches.v1_11_employee_write_lockdown
+myhr.patches.v1_12_repair_hr_controls_tab_anchor
+myhr.patches.v1_13_seed_ar_approver_settings
+myhr.patches.v1_14_move_ar_approval_to_own_tab
+myhr.patches.v1_15_backfill_action_centre_activity_posted_on
+myhr.patches.v1_16_elixiir_master_data_backfill
+myhr.patches.v1_17_action_centre_declarations
+myhr.patches.v1_18_medical_insurance_optout
+myhr.patches.v1_19_action_centre_personal_details
+myhr.patches.v1_20_seed_ac_payslip_toggles
+myhr.patches.v1_21_ac_payslip_show_in_pwa
+myhr.patches.v1_22_drop_reqd_on_elixiir_master_fields
+myhr.patches.v1_27_add_expense_claim_remarks
+myhr.patches.v1_28_add_shift_type_eod_checkout
+myhr.patches.v1_29_drop_lpte_orphans
+myhr.patches.v1_30_seed_missing_in_reminder_log
+myhr.patches.v1_31_seed_checkin_reminder_toggles

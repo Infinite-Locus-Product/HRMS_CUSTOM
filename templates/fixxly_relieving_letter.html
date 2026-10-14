@@ -1,0 +1,148 @@
+{#-
+	Fixxly Relieving Letter — print format for Separation HR Clearance.
+
+	This file IS the template. The Print Format record is created by hand in Desk,
+	once per site (see docs/OFFBOARDING_TESTING_GUIDE.md): DocType "Separation HR
+	Clearance", Module "myHR", Custom Format ticked. printview.get_print_format
+	then reads this file off disk at print time, because the myHR module is not a
+	custom module -- so the record is a stub and the letter lives in git.
+
+	The record's own HTML field is ignored, but it cannot be left empty:
+	Print Format.validate throws "HTML is required" when Custom Format is ticked.
+	Put a one-line note in it pointing here.
+
+	Edit the letter here, never in Desk: anything typed into that field is ignored
+	while this file exists, so a Desk edit would look applied and do nothing.
+
+	`separation_hr_clearance.release_relieving_letter` renders this BY NAME. If the
+	record is missing, `_assert_print_format_exists` refuses the release -- frappe
+	itself would silently fall back to the Standard format.
+
+	Data sources
+	- The clearance   : employee, employee_name, last_working_day, and the release
+	                    timestamp that dates the letter.
+	- The separation  : designation, and boarding_begins_on ("Separation Begins On")
+	                    as the resignation date. Deliberately NOT
+	                    `resignation_letter_date`: that field is read-only and
+	                    fetched from the Employee master, where it is blank on
+	                    every record created before myHR started stamping it, so
+	                    the letter read "resignation dated —". Separation Begins
+	                    On is mandatory on the form, so it is always populated.
+	- The Employee    : date_of_joining and current_address.
+	  Resolved here rather than copied onto the clearance as fetch fields — the
+	  form would grow six read-only fields that exist only to be printed, and the
+	  letter is frozen as a PDF at release anyway.
+	- Header/footer   : the Letter Head (logo, company block, CIN / registered
+	                    office footer). Nothing company-specific is hard-coded here
+	                    except the signatory and settlement window below.
+-#}
+{%- set SIGNATORY_NAME = "Simran Bhisikar" -%}
+{%- set SIGNATORY_TITLE = "HR Manager" -%}
+{#- Drop the PNG into myhr/public/images/ and set the path here, e.g.
+    "/assets/myhr/images/hr-signature.png". Left empty, a blank signing line is
+    printed instead of a broken image. A file uploaded through Desk will NOT work:
+    it lands in /files/ or /private/files/, which is not version-controlled and
+    does not render in the PDF when private. -#}
+{%- set SIGNATORY_IMAGE = "" -%}
+{#- Working days quoted for the full and final settlement. -#}
+{%- set FNF_SETTLEMENT_DAYS = 45 -%}
+
+{%- set sep = frappe.db.get_value(
+		"Employee Separation", doc.employee_separation,
+		["designation", "boarding_begins_on", "company"], as_dict=True
+	) or {} -%}
+{%- set emp = frappe.db.get_value(
+		"Employee", doc.employee,
+		["date_of_joining", "current_address"], as_dict=True
+	) or {} -%}
+{%- set company_name = sep.company or frappe.defaults.get_user_default("Company") -%}
+{#- The letter is dated when it was released. Falls back to today for a preview
+    taken from the Print menu before release. -#}
+{%- set letter_date = doc.relieving_letter_released_on or frappe.utils.nowdate() -%}
+{%- macro on(value) -%}{{ frappe.utils.formatdate(value, "dd/MM/yyyy") if value else "—" }}{%- endmacro -%}
+
+{#- Custom formats must render the Letter Head themselves (standard.html does it
+	for built-in layouts). With "Repeat Header and Footer" on in Print Settings,
+	wkhtmltopdf lifts #header-html / #footer-html onto every PDF page. -#}
+{%- macro page_header() -%}
+	<div {% if print_settings and print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+		{%- if letter_head and not no_letterhead %}<div class="letter-head">{{ letter_head }}</div>{% endif %}
+	</div>
+{%- endmacro -%}
+{%- macro page_footer() -%}
+	<div {% if print_settings and print_settings.repeat_header_footer %} id="footer-html" class="visible-pdf" {% endif %}>
+		{%- if footer and not no_letterhead %}<div class="letter-head-footer">{{ footer }}</div>{% endif %}
+	</div>
+{%- endmacro -%}
+
+<style>
+	.relieving { font-size: 10.5pt; line-height: 1.5; color: #222; }
+	.relieving p { margin: 0 0 10px 0; }
+	.relieving .date { font-weight: 600; margin-bottom: 18px; }
+	.relieving .addressee { margin-bottom: 16px; }
+	.relieving .addressee div { margin-bottom: 2px; }
+	.relieving .subject { margin: 16px 0 14px; font-weight: 700; text-decoration: underline; }
+	.relieving .sign-block { margin-top: 30px; }
+	.relieving .sign-img { display: block; height: 44px; margin: 6px 0 -14px 8px; }
+	.relieving .sign-line { margin-top: 22px; }
+	.relieving .sign-name { font-weight: 700; margin-top: 4px; }
+	.relieving .sign-title { color: #555; font-size: 9.5pt; }
+</style>
+
+<div class="relieving">
+	{{ page_header() }}
+
+	<div class="date">Date: {{ on(letter_date) }}</div>
+
+	<div class="addressee">
+		<div>To,</div>
+		<div><b>{{ doc.employee_name }}</b></div>
+		<div>{{ doc.employee }}{% if sep.designation %} | {{ sep.designation }}{% endif %}</div>
+		{#- Printed only when it is on record; an empty line reads as a mistake on a
+		    letter the leaver keeps. -#}
+		{%- if emp.current_address %}<div>{{ emp.current_address }}</div>{% endif %}
+	</div>
+
+	<p class="subject">Subject: Relieving Letter</p>
+
+	<p>Dear {{ doc.employee_name }},</p>
+
+	<p>
+		This is with reference to your resignation dated {{ on(sep.boarding_begins_on) }}, which was
+		accepted by the company. You are hereby relieved from your duties as
+		{{ sep.designation or "an employee" }} at {{ company_name }} at the close of business hours on
+		{{ on(doc.last_working_day) }}.
+	</p>
+
+	<p>
+		We confirm that you were associated with the company from {{ on(emp.date_of_joining) }} to
+		{{ on(doc.last_working_day) }}, and that you have completed the handover of your work and returned
+		all company assets.
+	</p>
+
+	<p>
+		Your full and final settlement has been / will be processed within {{ FNF_SETTLEMENT_DAYS }} working
+		days of your last working day, as per company policy.
+	</p>
+
+	<p>
+		You continue to be bound by the confidentiality and other post-employment obligations in your
+		employment agreement.
+	</p>
+
+	<p>
+		We thank you for your contribution to {{ company_name }} and wish you all the best in your future
+		endeavours.
+	</p>
+
+	<div class="sign-block">
+		<p>Yours sincerely,</p>
+		{%- if SIGNATORY_IMAGE %}<img class="sign-img" src="{{ SIGNATORY_IMAGE }}" alt="">{% endif %}
+		<div class="sign-line">_______________________</div>
+		<div class="sign-name">{{ SIGNATORY_NAME }}</div>
+		<div class="sign-title">{{ SIGNATORY_TITLE }}</div>
+		<div class="sign-title">For {{ company_name }}</div>
+	</div>
+
+	{{ page_footer() }}
+</div>

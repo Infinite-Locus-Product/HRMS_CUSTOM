@@ -1,0 +1,125 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:declaration_name",
+ "creation": "2026-04-29 13:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "track_changes": 1,
+ "field_order": [
+  "declaration_name",
+  "is_active",
+  "cb_meta",
+  "effective_from",
+  "effective_to",
+  "sb_template",
+  "template_document",
+  "sb_description",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "declaration_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Declaration Name",
+   "reqd": 1,
+   "unique": 1,
+   "description": "Title for this opt-out declaration version (e.g. 'FY26-27 Opt-Out Declaration')."
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Active",
+   "description": "Only the most recent active declaration is shown to employees who opt out. Toggle older versions inactive when superseded."
+  },
+  {
+   "fieldname": "cb_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "label": "Effective From"
+  },
+  {
+   "fieldname": "effective_to",
+   "fieldtype": "Date",
+   "label": "Effective To"
+  },
+  {
+   "fieldname": "sb_template",
+   "fieldtype": "Section Break",
+   "label": "Declaration Template"
+  },
+  {
+   "fieldname": "template_document",
+   "fieldtype": "Attach",
+   "label": "Declaration Template (PDF)",
+   "reqd": 1,
+   "description": "The blank Medical Insurance Opt-Out Declaration PDF. Employees who opt out will see this as a non-removable, downloadable file in the Action Centre."
+  },
+  {
+   "fieldname": "sb_description",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-04-29 13:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Medical Insurance Opt Out Declaration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User"
+  },
+  {
+   "read": 1,
+   "role": "Employee"
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

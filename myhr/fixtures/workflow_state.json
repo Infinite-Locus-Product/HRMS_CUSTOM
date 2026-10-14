@@ -1,0 +1,48 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "name": "Draft",
+  "workflow_state_name": "Draft"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "name": "Pending L1 Approval",
+  "workflow_state_name": "Pending L1 Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "name": "Pending L2 Approval",
+  "workflow_state_name": "Pending L2 Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "remove",
+  "name": "Rejected",
+  "style": "Danger",
+  "workflow_state_name": "Rejected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "name": "Pending Manager Clearance",
+  "workflow_state_name": "Pending Manager Clearance"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "name": "Complete",
+  "workflow_state_name": "Complete"
+ }
+]

@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "creation": "2026-09-25 11:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "asset_type",
+  "returned",
+  "asset_condition",
+  "recovery_amount",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "asset_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Asset",
+   "options": "IT Asset Type",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "description": "Tick once the item is physically back.",
+   "fieldname": "returned",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Returned"
+  },
+  {
+   "columns": 2,
+   "description": "Required for any returned item.",
+   "fieldname": "asset_condition",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Condition",
+   "options": "\nGood\nDamaged\nMissing"
+  },
+  {
+   "columns": 2,
+   "depends_on": "eval:[\"Damaged\",\"Missing\"].includes(doc.asset_condition)",
+   "description": "Only for Damaged or Missing. Feeds the clearance total.",
+   "fieldname": "recovery_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Recovery Amount",
+   "mandatory_depends_on": "eval:[\"Damaged\",\"Missing\"].includes(doc.asset_condition)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-25 11:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "myHR",
+ "name": "Separation IT Asset",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

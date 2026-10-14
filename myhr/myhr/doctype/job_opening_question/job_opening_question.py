@@ -1,0 +1,8 @@
+# Copyright (c) 2026, Abhay Nain and contributors
+# For license information, please see license.txt
+
+from frappe.model.document import Document
+
+
+class JobOpeningQuestion(Document):
+	pass
